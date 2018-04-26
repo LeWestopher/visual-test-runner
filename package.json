@@ -1,0 +1,78 @@
+{
+    "name": "visual-test-runner",
+    "displayName": "visual-test-runner",
+    "description": "A visual test runner view for vscode",
+    "version": "0.0.1",
+    "publisher": "wking",
+    "engines": {
+        "vscode": "^1.22.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:jestTestRunner.runTests"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.sayHello",
+                "title": "Hello World"
+            },
+            {
+                "command": "jestTestRunner.openTestFile",
+                "title": "Open Test File"
+            },
+            {
+                "command": "jestTestRunner.runTests",
+                "title": "Start Visual Test Runner"
+            }
+        ],
+        "views": {
+            "explorer": [
+                {
+                    "id": "jestTestRunner",
+                    "name": "Test Runner"
+                }
+            ]
+        },
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "jestTestRunner.runTests",
+                    "group": "8_testrunner"
+                }
+            ]
+        },
+        "configuration": {
+            "type": "object",
+            "title": "Visual Test Runner configuration",
+            "properties": {
+                "jestTestRunner.engine": {
+                    "type": "string",
+                    "default": "jest",
+                    "description": "Choose the engine to run your tests with.  Jest is selected by default.  Karma is available as well."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^7.0.43",
+        "tslint": "^5.8.0",
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6"
+    },
+    "dependencies": {
+        "@types/lodash": "^4.14.107",
+        "lodash": "^4.17.5"
+    }
+}
